@@ -1,0 +1,16 @@
+; bank.lab 존 - 메일 인증 레코드 (bind9)
+; SPF: 메일서버 IP(10.10.0.20)만 발신 허용, 나머지 거부(-all)
+bank.lab.              IN TXT  "v=spf1 ip4:10.10.0.20 -all"
+
+; DKIM: setup config dkim 로 생성된 mail.txt 공개키를 아래 형식으로 게시
+mail._domainkey.bank.lab.  IN TXT  "v=DKIM1; h=sha256; k=rsa; p=MIIBIjANBgkqhki...(생성된 공개키 전체)..."
+
+; DMARC: 정렬 실패 시 거부, 리포트 수신
+_dmarc.bank.lab.       IN TXT  "v=DMARC1; p=reject; sp=reject; adkim=s; aspf=s; rua=mailto:dmarc@bank.lab; fo=1"
+
+; partner.lab (협력사 도메인) - 사칭 테스트 대조군
+partner.lab.           IN TXT  "v=spf1 ip4:10.10.0.21 -all"
+_dmarc.partner.lab.    IN TXT  "v=DMARC1; p=reject; rua=mailto:dmarc@partner.lab"
+
+; 적용: 존 파일 수정 후  rndc reload   또는  systemctl reload named
+; 확인:  dig +short TXT _dmarc.bank.lab @10.10.0.5

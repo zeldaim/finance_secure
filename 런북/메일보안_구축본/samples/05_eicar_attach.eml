@@ -1,0 +1,18 @@
+From: "세금계산서" <billing@tax-notice.net>
+Return-Path: <billing@tax-notice.net>
+Received-SPF: pass client-ip=198.51.100.7
+Subject: 전자세금계산서 발행
+To: user@bank.lab
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="Y"
+
+--Y
+Content-Type: text/plain; charset=utf-8
+
+첨부파일을 확인하세요.
+--Y
+Content-Type: application/octet-stream; name="invoice.pdf.exe"
+Content-Disposition: attachment; filename="invoice.pdf.exe"
+
+X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*
+--Y--

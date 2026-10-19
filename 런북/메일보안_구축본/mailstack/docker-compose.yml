@@ -1,0 +1,27 @@
+# 메일 보안 스택 (docker-mailserver 기반)
+# Postfix + Dovecot + Rspamd + OpenDKIM + DMARC + ClamAV 올인원.
+# 기동: docker compose up -d   (호스트에 Docker 필요)
+# ⚠️ 격리 랩 전용. 외부(25번) 노출 금지. 인터넷과 분리된 내부망에서만.
+services:
+  mailserver:
+    image: ghcr.io/docker-mailserver/docker-mailserver:14.0.0
+    container_name: mailserver
+    hostname: mail.bank.lab
+    env_file: mailserver.env
+    ports:
+      - "25:25"     # SMTP (랩 내부만)
+      - "587:587"   # Submission
+      - "993:993"   # IMAPS
+    volumes:
+      - ./data/mail-data/:/var/mail/
+      - ./data/mail-state/:/var/mail-state/
+      - ./data/mail-logs/:/var/log/mail/
+      - ./config/:/tmp/docker-mailserver/
+      - /etc/localtime:/etc/localtime:ro
+    cap_add: ["NET_ADMIN"]   # Rspamd/Fail2ban용
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "ss", "-lntp", "|", "grep", ":25"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
