@@ -279,6 +279,9 @@ def report(rows, block_file=None):
 
 
 def main():
+    # Windows 콘솔(cp949)에서 이모지 출력 시 UnicodeEncodeError 방지
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     ap = argparse.ArgumentParser(description="Wazuh alerts.json ML 이상탐지")
     ap.add_argument("--alerts", default="/var/ossec/logs/alerts/alerts.json",
                     help="Wazuh alerts.json 경로")
