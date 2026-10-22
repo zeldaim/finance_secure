@@ -171,6 +171,7 @@ auth_fail 누적). 이게 이 랩의 셀링포인트.
 | `wazuh_ml_detect.py` | ML 탐지 엔진(alerts.json → Isolation Forest/룰 폴백) |
 | `sample_alerts.json` | 공격 없이 피처 추출 검증용 샘플 |
 | `README.md` | 이 문서(계획·결정·절차) |
+| `ML_vs_LLM_비교실험_계획.md` | 후속: 룰·ML·LLM·조합 탐지 비교 실험 계획 (모니터링 지표·클라우드 확장 분석 포함) |
 | `active-response/` | (Phase 3) 자동 차단 스크립트 자리 |
 
 ---
